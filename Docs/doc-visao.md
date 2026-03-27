@@ -9,7 +9,6 @@ O projeto consiste no desenvolvimento de um sistema de gestão para automatizar 
 | Membro | Papel |
 | :--- | :--- |
 | Ariadny Francisca Dantas Santos | Analista e Desenvolvedora |
-| João Roberto Galvão Aquino | Analista e Desenvolvedor |
 | José Salustiano Neto Junior | Analista e Desenvolvedor |
 | Riam Stefesom Venâncio da Silva | Analista e Desenvolvedor |
 
@@ -70,29 +69,31 @@ Cadastrar todos ou os mais recorrentes serviços realizados na oficina.
 
 ---
 
-### Entidade Ordem de Serviço - RF04 - Manter Ordens de Serviços
-Cadastrar todos os serviços realizados na oficina atrelando ao carro ao qual foi prestado esse serviço.
-
-| Requisito | Descrição | Ator |
-| :--- | :--- | :--- |
-| RF04.01 - Inserir Ordem | Preencher informações: ID do veículo vinculado, ID do procedimento realizado e data de chegada. | Administrador |
-| RF04.02 - Ler Ordem | Solicita e apresenta as informações da ordem de serviço cadastradas no sistema. | Administrador |
-| RF04.03 - Atualizar Ordem | Envia os dados para alteração da ordem de serviço. | Administrador |
-| RF04.04 - Deletar Ordem | Solicita deletar e desativa a ordem de serviço no sistema. | Administrador |
-
----
-
-### Entidade Insumos - RF06 - Manter Insumos
+### Entidade Insumos - RF04 - Manter Insumos
 Cadastro de insumos de alta demanda, como peças usadas nas reparações.
 
 | Requisito | Descrição | Ator |
 | :--- | :--- | :--- |
-| RF06.01 - Inserir Insumo | Preencher informações do item: Nome, Marca, Descrição. | Administrador |
-| RF06.02 - Ler Insumo | Solicita e apresenta informações de determinado item cadastrado no estoque. | Administrador |
-| RF06.03 - Atualizar Insumo | Insere as novas informações do item e solicita atualização. | Administrador |
-| RF06.04 - Deletar Insumo | Solicita deletar e remove os dados do item do banco de dados. | Administrador |
+| RF04.01 - Inserir Insumo | Preencher informações do item: Nome, Marca, Descrição. | Administrador |
+| RF04.02 - Ler Insumo | Solicita e apresenta informações de determinado item cadastrado no estoque. | Administrador |
+| RF04.03 - Atualizar Insumo | Insere as novas informações do item e solicita atualização. | Administrador |
+| RF04.04 - Deletar Insumo | Solicita deletar e remove os dados do item do banco de dados. | Administrador |
 
 ---
+
+
+### Entidade Ordem de Serviço - RF05 - Manter Ordens de Serviços
+Cadastrar todos os serviços realizados na oficina atrelando ao carro ao qual foi prestado esse serviço.
+
+| Requisito | Descrição | Ator |
+| :--- | :--- | :--- |
+| RF05.01 - Inserir Ordem | Preencher informações: ID do veículo vinculado, ID do procedimento realizado e data de chegada. | Administrador |
+| RF05.02 - Ler Ordem | Solicita e apresenta as informações da ordem de serviço cadastradas no sistema. | Administrador |
+| RF05.03 - Atualizar Ordem | Envia os dados para alteração da ordem de serviço. | Administrador |
+| RF05.04 - Deletar Ordem | Solicita deletar e desativa a ordem de serviço no sistema. | Administrador |
+
+---
+
 
 ### Pagamentos e Relatórios
 
@@ -241,4 +242,4 @@ Tabela com o mapeamento dos riscos do projeto, as possíveis soluções e os res
 ### Referências
 
 * Documento de Visão Original do Projeto.
-* Plano de Automação - Oficina Mecânica (Ariadny, João, José e Riam).
+* Plano de Automação - Oficina Mecânica (Ariadny, José e Riam).
