@@ -24,3 +24,12 @@
 | Banco de dados|
 | Cache   |
 | Storage     |
+
+
+## Tabela de tecnologias
+
+| Mecanismo de Análise | Tecnologia de Implementação | Justificativa/Responsabilidade |
+| ------------- |:-------------:|:--------------:
+| Frontend      | React.js      | Interface responsiva e dinâmica, consumo da api e boa perfomance         |
+| Backend       | Django     | Facilidade de implementação, segurança e velocidade         |
+| Persistência      | PostgreSQL     | Armazenamento relacional, escalabilidade e open source         |
