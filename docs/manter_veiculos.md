@@ -5,6 +5,18 @@
 | ------------- | :------------------------------------------------------------- |
 | **Descrição** | O sistema deve manter o cadastro de veículos. Essa manutenção é feita pelo administrador que pode cadastrar um veículo no sistema inserindo as seguintes informações: marca, modelo, tipo, cor e placa. Junto a isso, ele pode visualizar, editar, ou excluir um veículo cadastrado. |
 
+## Regras de negócios
+
+| Regras de negócio| Descrição|
+| ------------- | :-----------------:|
+| RN01 - Vínculo Obrigatório com Cliente          | Todo veículo registrado deve estar obrigatoriamente vinculado a um cliente cadastrado no sistema.     |
+| RN02 - Preenchimento Obrigatório        | Para cadastrar um veículo, é indispensável o preenchimento dos campos: Marca, Modelo, Tipo, Cor e Placa.  |
+| RN03 - Restrição de Acesso (Perfil):        | Apenas usuários com perfil de "Administrador" (Gerente ou Auxiliar) podem realizar operações de inclusão, alteração, consulta ou exclusão de veículos.    |
+| RN04 - Validação de Dados        | O sistema não deve processar o salvamento de informações se houver campos com dados inválidos ou inconsistentes. |
+| RN05 - Precedência de Consulta       | Para realizar a edição ou a exclusão de um veículo, o sistema deve obrigatoriamente realizar uma consulta prévia para garantir que o registro existe.    |
+| RN06 - Exclusão Lógica (Suspensão)       | Ao solicitar a exclusão, os dados do veículo não devem ser apagados definitivamente, mas sim "desativados" ou "suspensos" para manter o histórico de serviços.    |
+| RN07 - Notificação de Inexistência       | O sistema deve exibir uma mensagem de erro específica caso o veículo consultado não esteja cadastrado ou esteja com o status suspenso.    |
+
 | **Requisitos envolvidos** |                                                    |
 | ------------- | :------------------------------------------------------------- |
 | RF01          | Manter veículo     |
