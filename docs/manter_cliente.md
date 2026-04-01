@@ -5,6 +5,31 @@
 | ------------- | :------------------------------------------------------------- |
 | **Descrição** | O sistema deve permitir que o Administrador possa cadastrar, consultar, atualizar e excluir os registros de clientes , para poder organizar e acessar rapidamente suas informações principais (Nome, CPF, Data de Nascimento, Endereço e Telefone). Como também vincular esse cliente a um veículo e consequentemente ordens de serviços.|
 
+## Regras de negócios
+
+| Regra de Negócio | Descrição |
+| :--- | :--- |
+| **RN01 - Preenchimento Obrigatório** | Para cadastrar um cliente, é indispensável o preenchimento das informações principais (Nome, CPF, Data de Nascimento, Endereço e Telefone). |
+| **RN02 - Restrição de Acesso (Perfil)** | Apenas usuários com o perfil de "Administrador" podem realizar operações de adicionar, visualizar, atualizar e remover clientes. |
+| **RN03 - Validação de Dados** | O sistema não deve processar o salvamento de informações e deve exibir mensagem de erro caso os dados estejam inválidos. |
+| **RN04 - Precedência de Consulta** | Para realizar a atualização ou a remoção de um cliente, o sistema deve obrigatoriamente realizar uma consulta prévia para garantir que o registro existe. |
+| **RN05 - Notificação de Inexistência** | O sistema deve exibir mensagem de cliente inexistente caso o administrador tente pesquisar um cliente não cadastrado. |
+| **RN06 - Regra de Remoção (Exclusão Lógica)** | Ao solicitar a remoção, os dados do cliente devem ser desativados/suspensos para manter o histórico. O sistema deve exibir mensagem de erro caso não consiga deletar o cliente. |
+
+## Mensagens - Manter Cliente
+
+* Mensagens de Sucesso
+  * MS01 - Sucesso no Cadastro: "Cliente cadastrado com sucesso!"
+  * MS02 - Sucesso na Edição: "Dados do cliente atualizados com sucesso!"
+  * MS03 - Sucesso na Exclusão: "O cliente foi desativado com sucesso!"
+* Mensagens de Erro
+  * MS04 - Dados Inválidos: "Erro: Informações inválidas detectadas. Por favor, corrija os campos destacados e tente novamente."
+  * MS05 - Cliente Inexistente: "Erro: O cliente informado não está cadastrado ou encontra-se suspenso."
+  * MS06 - Falha na Exclusão: "Erro: Não foi possível excluir o cliente. Tente novamente."
+* Mensagens de Alerta e Confirmação
+  * MS07 - Confirmação de Exclusão: "Tem certeza que deseja desativar este cliente do sistema?"
+  * MS08 - Alerta de Campos Obrigatórios: "Atenção: Todos os campos principais (Nome, CPF, Data de Nascimento, Endereço e Telefone) devem ser preenchidos."
+
 
 | **Requisitos envolvidos** |                                                    |
 | ------------- | :------------------------------------------------------------- |
