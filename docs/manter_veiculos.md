@@ -17,6 +17,22 @@
 | RN06 - Exclusão Lógica (Suspensão)       | Ao solicitar a exclusão, os dados do veículo não devem ser apagados definitivamente, mas sim "desativados" ou "suspensos" para manter o histórico de serviços.    |
 | RN07 - Notificação de Inexistência       | O sistema deve exibir uma mensagem de erro específica caso o veículo consultado não esteja cadastrado ou esteja com o status suspenso.    |
 
+## Mensagens do manter veículo
+
+* Mensagem de sucesso
+  * MS01 - Sucesso no Cadastro: "Veículo cadastrado com sucesso!" 
+  * MS02 - Sucesso na Edição: "Dados do veículo atualizados com sucesso!" 
+  * MS03 - Sucesso na Exclusão: "O veículo foi desativado com sucesso!" 
+* Mensagens de Erro
+  * MS04 - Dados Inválidos: "Erro: Informações inválidas detectadas. Por favor, corrija os campos destacados e tente novamente." 
+  * MS05 - Veículo Inexistente: "Erro: O veículo informado não está cadastrado ou encontra-se suspenso." 
+  * MS06 - Falha na Exclusão: "Erro: Não foi possível excluir o veículo devido a uma instabilidade no sistema. Tente novamente." 
+  * MS07 - Erro de Vínculo: "Erro: Não é possível cadastrar o veículo. É necessário selecionar um cliente válido." 
+* Mensagens de Alerta e Confirmação
+    * MS08 - Confirmação de Exclusão: "Tem certeza que deseja desativar este veículo do sistema?" 
+    * MS09 - Alerta de Pré-requisito: "Atenção: Para cadastrar um veículo, você deve primeiro selecionar um cliente previamente registrado." 
+    * MS10 - Alerta de Campos Obrigatórios: "Atenção: Todos os campos (Marca, Modelo, Tipo, Cor e Placa) devem ser preenchidos."
+
 | **Requisitos envolvidos** |                                                    |
 | ------------- | :------------------------------------------------------------- |
 | RF01          | Manter veículo     |
