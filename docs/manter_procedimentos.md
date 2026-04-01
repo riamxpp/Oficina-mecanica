@@ -5,6 +5,17 @@
 | ------------- | :------------------------------------------------------------- |
 | **Descrição** | O sistema conter informações gerais a respeito do procedimento. Um procedimento tem os atributos nome, valor, tempo_medio e descrição. O administrador (adm) do sistema será responsável por cadastrar o procedimento. Também poderá consultar dados sobre o procedimento no sistema. O administrador do sistema pode realizar as operações de adicionar, alterar, remover e listar os usuários comuns do sistema. |
 
+## Regras de negócios
+
+| Regras de negócio| Descrição|
+| ------------- | :-----------------:|
+| RN01 - Atributos Obrigatórios         | Para que um procedimento seja cadastrado, é indispensável o preenchimento dos campos: Nome, Valor, Tempo Médio e Descrição.    |
+| RN02 - Restrição de Acesso (Perfil)        | Apenas o usuário com perfil de Administrador (ADM) tem permissão para realizar as operações de adicionar, alterar, consultar ou remover procedimentos.  |
+| RN03 - Validação de Dados        | O sistema deve validar todos os dados informados antes de persistir as informações no banco de dados.    |
+| RN04 - Precedência de Consulta        | Para realizar qualquer alteração ou exclusão de um procedimento, o sistema deve obrigatoriamente realizar uma consulta prévia para garantir a existência do registro. |
+| RN05 - Integridade de Exclusão (Suspensão)      | O processo de remoção deve seguir a lógica de suspensão (exclusão lógica), garantindo que os dados não sejam perdidos caso haja vínculo com históricos de serviço.    |
+| RN06 - Unicidade de Procedimento       | O sistema deve garantir que não existam procedimentos duplicados com o mesmo nome para evitar inconsistências nos valores cobrados.   |
+
 
 | **Requisitos envolvidos** |                                                    |
 | ------------- | :------------------------------------------------------------- |
