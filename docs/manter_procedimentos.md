@@ -31,6 +31,16 @@
     * MS08 - Alerta de Campos Obrigatórios: "Atenção: Os campos Nome, Valor e Tempo Médio devem ser preenchidos corretamente."
 
 
+## Tabelas impactadas
+
+1. Tabela Procedimento (Principal)
+  1. Atributos manipulados: id_procedimento, nome, valor, tempo_estimado e descrição.
+2. Tabela Ordem_Servico (Impacto de Relacionamento)
+  1. Relação: Cada registro de Ordem de Serviço possui uma chave estrangeira id_procedimento.
+  2. Regra: Não é possível cadastrar um serviço sem que o procedimento executado já esteja registrado.
+3. Tabela Insumo (Impacto de Associação)
+    1. Relação: Ao manter um procedimento, o sistema pode precisar consultar quais materiais (insumos) são necessários para que esse serviço seja concluído.
+
 | **Requisitos envolvidos** |                                                    |
 | ------------- | :------------------------------------------------------------- |
 | RF01          | Manter procedimento |
