@@ -5,6 +5,33 @@
 | ------------- | :------------------------------------------------------------- |
 | **Descrição** | O sistema deve manter um cadastro de usuário. Um usuário tem os atributos nome, CPF, email, telefone e endereço. O sistema não terá mecanismo de login, o administrador (adm) do sistema será responsável por cadastrar o usuário. Além disso o adm poderá alterar alguns dados, como o e-mail ou nome. O administrador do sistema pode realizar as operações de adicionar, alterar, remover e listar os usuários comuns do sistema. |
 
+## Regras de negócios 
+
+| Regra de Negócio | Descrição |
+| :--- | :--- |
+| **RN01 - Preenchimento Obrigatório** | Para cadastrar um usuário, é indispensável o preenchimento dos atributos principais: nome, CPF, e-mail, telefone e endereço. |
+| **RN02 - Restrição de Acesso (Perfil)** | Como o sistema não possui mecanismo de login próprio para usuários comuns, apenas o "Administrador" tem permissão para adicionar, alterar, remover e listar os usuários do sistema. |
+| **RN03 - Validação de Dados** | O sistema não deve processar o salvamento de informações e deve exibir mensagem de erro caso os dados estejam inválidos durante o cadastro ou atualização. |
+| **RN04 - Atualização de Dados** | O administrador do sistema tem a permissão de alterar os dados cadastrais do usuário (com destaque para campos como e-mail ou nome). |
+| **RN05 - Notificação de Inexistência** | O sistema deve exibir mensagem de usuário inexistente caso o administrador tente pesquisar/consultar um usuário que não está cadastrado. |
+| **RN06 - Regra de Remoção (Suspensão)** | Ao solicitar a exclusão de um usuário, os dados devem ser suspensos/desativados no sistema. O sistema deve exibir mensagem de erro caso não consiga deletar o usuário. |
+
+## Mensagens 
+
+* **Mensagens de Sucesso**
+  * MS01 - Sucesso no Cadastro: "Usuário cadastrado com sucesso!"
+  * MS02 - Sucesso na Edição: "Dados do usuário atualizados com sucesso!"
+  * MS03 - Sucesso na Exclusão/Suspensão: "O usuário foi suspenso/removido com sucesso!"
+
+* **Mensagens de Erro**
+  * MS04 - Dados Inválidos: "Erro: Informações inválidas detectadas. Por favor, verifique os dados informados e tente novamente."
+  * MS05 - Usuário Inexistente: "Erro: O usuário pesquisado não está cadastrado no sistema."
+  * MS06 - Falha na Exclusão: "Erro: Não foi possível deletar o usuário. Ocorreu um problema no sistema, tente novamente."
+
+* **Mensagens de Alerta e Confirmação**
+  * MS07 - Confirmação de Exclusão: "Tem certeza que deseja suspender/remover este usuário do sistema?"
+  * MS08 - Alerta de Campos Obrigatórios: "Atenção: Os campos nome, CPF, e-mail, telefone e endereço devem ser preenchidos obrigatoriamente."
+  
 
 | **Requisitos envolvidos** |                                                    |
 | ------------- | :------------------------------------------------------------- |
