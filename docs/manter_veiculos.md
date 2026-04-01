@@ -33,6 +33,20 @@
     * MS09 - Alerta de Pré-requisito: "Atenção: Para cadastrar um veículo, você deve primeiro selecionar um cliente previamente registrado." 
     * MS10 - Alerta de Campos Obrigatórios: "Atenção: Todos os campos (Marca, Modelo, Tipo, Cor e Placa) devem ser preenchidos."
 
+## Tabelas impactadas
+
+1. Tabela Veiculo (Principal)
+  1. Campos principais: id_veiculo, placa, cor, categoria (tipo).
+  2. Relacionamentos: Recebe id_cliente e id_modelo como referências obrigatórias.
+2. Tabela Cliente
+  1. Campos envolvidos: id_pessoa, nome, cpf.
+3. Tabela Modelo
+    1. Campos envolvidos: id_modelo, nome.
+    2. Relacionamentos: Vinculada à tabela Marca.
+3. Tabela Marca
+    1. Campos envolvidos: id_marca, marca (nome do fabricante).
+3. Tabela Ordem_Servico (Impacto Futuro)
+
 | **Requisitos envolvidos** |                                                    |
 | ------------- | :------------------------------------------------------------- |
 | RF01          | Manter veículo     |
