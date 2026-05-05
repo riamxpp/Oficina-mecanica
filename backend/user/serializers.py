@@ -7,13 +7,14 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'password')
+        fields = ('id', 'username', 'email', 'password', 'is_staff')
 
     def create(self, validated_data):
         # O método create_user do ORM do Django já faz o hash (criptografia) da senha automaticamente
         user = User.objects.create_user(
             username=validated_data['username'],
             email=validated_data.get('email', ''),
-            password=validated_data['password']
+            password=validated_data['password'],
+            is_staff=validated_data.get('is_staff', False),
         )
         return user
