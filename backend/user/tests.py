@@ -50,3 +50,11 @@ class UserCRUDTests(APITestCase):
     self.assertEqual(response.status_code, status.HTTP_200_OK) # Verifica se retornou 200 OK
     self.user.refresh_from_db() # Atualiza o objeto do banco de dados
     self.assertEqual(self.user.email, dados_atualizados['email']) # Verifica se o email foi atualizado corretamente
+
+  def test_delete_user(self):
+    self.client.force_authenticate(user=self.user) # Autentica o usuário criado no setUp
+    
+    response = self.client.delete(self.user_detail_url)
+   
+    self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT) # Verifica se retornou 204 No Content
+    self.assertEqual(User.objects.count(), 0) # Verifica se o usuário foi deletado do banco de testes
