@@ -28,3 +28,12 @@ class UserCRUDTests(APITestCase):
     
     self.assertEqual(response.status_code, status.HTTP_201_CREATED) # Verifica se retornou 201 Created
     self.assertEqual(User.objects.count(), 2) # Agora temos 2 usuários no banco de testes (o criado no setUp e o novo)
+
+  def test_read_user(self):
+    self.client.force_authenticate(user=self.user) # Autentica o usuário criado no setUp
+    
+    response = self.client.get(self.user_detail_url)
+
+    self.assertEqual(response.status_code, status.HTTP_200_OK) # Verifica se retornou 200 OK
+    self.assertEqual(response.data['username'], self.user_data['username']) # Verifica se o username retornado é o correto
+    self.assertNotIn('password', response.data) # Verifica se a senha não está sendo retornada
