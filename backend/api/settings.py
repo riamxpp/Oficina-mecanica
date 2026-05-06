@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "user",
-    "rest_framework"
+    "rest_framework",
+    "clientes",
 ]
 
 REST_FRAMEWORK = {
@@ -87,7 +88,7 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
+APPEND_SLASH=False
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -107,6 +108,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # Essa linha aqui é a do seu token (provavelmente já está aí)
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        
+        # 👉 ADICIONE ESTA LINHA ABAIXO PARA O CHROME FUNCIONAR:
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
