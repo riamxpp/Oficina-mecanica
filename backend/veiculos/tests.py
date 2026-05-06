@@ -44,7 +44,14 @@ class VeiculoViewSetTest(APITestCase):
     # 3. Teste de ATUALIZAR (Update)
     def test_atualizar_dados_do_veiculo(self):
         # Cria um veículo primeiro
-        veiculo = Veiculo.objects.create(**self.veiculo_dados_validos)
+        veiculo = Veiculo.objects.create(
+            marca="Toyota", 
+            modelo="Corolla", 
+            tipo="Carro", 
+            cor="Prata", 
+            placa="ABC-1234", 
+            cliente=self.cliente
+        )
         url = reverse('veiculo-detail', args=[veiculo.id])
         
         # Muda apenas a cor
