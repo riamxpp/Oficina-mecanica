@@ -1,3 +1,75 @@
 from django.shortcuts import render
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+from django.http import Http404
+from .models import Veiculo
+from .serializers import VeiculoSerializer
 
-# Create your views here.
+class VeiculoViewSet(viewsets.ModelViewSet):
+    queryset = Veiculo.objects.all()
+    serializer_class = VeiculoSerializer
+
+    def get_object(self):
+        try:
+            return super().get_object()
+        except Http404:
+            raise Http404("Erro: O veículo informado não está cadastrado ou encontra-se suspenso.")
+
+    def create(self, request, *args, **kwargs):
+        if 'cliente' not in request.data or not request.data.get('cliente'):
+            return Response(
+                {"erro": "Erro: Não é possível cadastrar o veículo. É necessário selecionar um cliente válido."}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        serializer = self.get_serializer(data=request.data)
+        
+        if not serializer.is_valid():
+            return Response({
+                "erro": "Erro: Informações inválidas detectadas. Por favor, corrija os campos destacados e tente novamente.",
+                "detalhes": serializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        self.perform_create(serializer)
+        
+        return Response({
+            "mensagem": "Veículo cadastrado com sucesso!", 
+            "dados": serializer.data
+        }, status=status.HTTP_201_CREATED)
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        
+        try:
+            instance = self.get_object()
+        except Http404 as e:
+            return Response({"erro": str(e)}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        
+        if not serializer.is_valid():
+            return Response({
+                "erro": "Erro: Informações inválidas detectadas. Por favor, corrija os campos destacados e tente novamente.",
+                "detalhes": serializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        self.perform_update(serializer)
+        
+        return Response({
+            "mensagem": "Dados do veículo atualizados com sucesso!", 
+            "dados": serializer.data
+        }, status=status.HTTP_200_OK)
+
+    def destroy(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+        except Http404 as e:
+            return Response({"erro": str(e)}, status=status.HTTP_404_NOT_FOUND)
+        
+        try:
+            self.perform_destroy(instance)
+            return Response({"mensagem": "O veículo foi desativado com sucesso!"}, status=status.HTTP_200_OK)
+        except Exception:
+            return Response(
+                {"erro": "Erro: Não foi possível excluir o veículo devido a uma instabilidade no sistema. Tente novamente."}, 
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
