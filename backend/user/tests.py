@@ -37,3 +37,16 @@ class UserCRUDTests(APITestCase):
     self.assertEqual(response.status_code, status.HTTP_200_OK) # Verifica se retornou 200 OK
     self.assertEqual(response.data['username'], self.user_data['username']) # Verifica se o username retornado é o correto
     self.assertNotIn('password', response.data) # Verifica se a senha não está sendo retornada
+  
+  def test_update_user(self):
+    self.client.force_authenticate(user=self.user) # Autentica o usuário criado no setUp
+    
+    dados_atualizados = {
+      'username': 'mecanico_chefe',
+      'email': 'chefe_atualizado@oficina.com',
+    }
+
+    response = self.client.patch(self.user_detail_url, dados_atualizados)
+    self.assertEqual(response.status_code, status.HTTP_200_OK) # Verifica se retornou 200 OK
+    self.user.refresh_from_db() # Atualiza o objeto do banco de dados
+    self.assertEqual(self.user.email, dados_atualizados['email']) # Verifica se o email foi atualizado corretamente
