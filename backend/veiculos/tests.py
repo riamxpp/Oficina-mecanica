@@ -10,7 +10,10 @@ class VeiculoViewSetTest(APITestCase):
 
     def setUp(self):
         # Preparação (Arrange): Cria um cliente real no banco de testes para satisfazer o vínculo
-        self.cliente = Cliente.objects.create(nome="Cliente Teste")
+        self.cliente = Cliente.objects.create(
+            nome="Cliente Teste",
+            data_nascimento="1990-01-01"
+        )
         
         self.veiculo_dados_validos = {
             "marca": "Toyota",

@@ -14,6 +14,15 @@ class VeiculoViewSet(viewsets.ModelViewSet):
             return super().get_object()
         except Http404:
             raise Http404("Erro: O veículo informado não está cadastrado ou encontra-se suspenso.")
+        
+    def retrieve(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+        except Http404 as e:
+            return Response({"erro": str(e)}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
 
     def create(self, request, *args, **kwargs):
         if 'cliente' not in request.data or not request.data.get('cliente'):
