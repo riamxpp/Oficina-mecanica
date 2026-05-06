@@ -18,3 +18,10 @@ class RegisterSerializer(serializers.ModelSerializer):
             is_staff=validated_data.get('is_staff', False),
         )
         return user
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'is_staff', 'is_active')
+        # Impedir que usuários comuns alterem seu próprio status de staff
+        read_only_fields = ('is_staff', 'is_active')
