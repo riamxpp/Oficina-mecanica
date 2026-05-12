@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "clientes",
     "veiculos",
+    "core"
 ]
 
 REST_FRAMEWORK = {
