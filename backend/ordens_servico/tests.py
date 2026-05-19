@@ -34,7 +34,7 @@ class OrdemServicoViewSetTestCase(APITestCase):
         # 3. Cria uma OS base para os testes de Consultar, Atualizar e Deletar
         self.os_teste = OrdemServico.objects.create(
             veiculo=self.veiculo_teste,
-            status="orcamento"
+            status="aberto"
         )
         
         # 4. Define as URLs base
@@ -48,7 +48,7 @@ class OrdemServicoViewSetTestCase(APITestCase):
         """Testa a abertura de uma nova OS vinculada a um veículo"""
         dados_nova_os = {
             "veiculo": self.veiculo_teste.id,
-            "status": "orcamento"
+            "status": "aberto"
         }
         
         response = self.client.post(self.url_lista, dados_nova_os, format='json')
@@ -82,15 +82,15 @@ class OrdemServicoViewSetTestCase(APITestCase):
         
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['veiculo'], self.veiculo_teste.id)
-        self.assertEqual(response.data['status'], "orcamento")
+        self.assertEqual(response.data['status'], "aberto")
 
     # ----------------------------------------------------
     # TESTE DE ATUALIZAÇÃO (PATCH)
     # ----------------------------------------------------
     def test_atualizar_status_ordem_servico(self):
-        """Testa a mudança de status da OS (ex: Orçamento -> Em Execução)"""
+        """Testa a mudança de status da OS (ex: Em aberto -> Finalizado)"""
         novos_dados = {
-            "status": "execucao"
+            "status": "finalizado"
         }
         
         response = self.client.patch(self.url_detalhe, novos_dados, format='json')
@@ -99,7 +99,7 @@ class OrdemServicoViewSetTestCase(APITestCase):
         
         # Puxa os dados atualizados do banco para conferir
         self.os_teste.refresh_from_db()
-        self.assertEqual(self.os_teste.status, "execucao")
+        self.assertEqual(self.os_teste.status, "finalizado")
 
     # ----------------------------------------------------
     # TESTE DE EXCLUSÃO LÓGICA (DELETE)
