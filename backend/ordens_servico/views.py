@@ -32,7 +32,7 @@ class OrdemServicoViewSet(viewsets.ModelViewSet):
             )
         
         serializer = self.get_serializer(data=request.data)
-        
+
         if not serializer.is_valid():
             return Response({
                 "erro": "Erro: Informações inválidas detectadas. Por favor, corrija os campos destacados e tente novamente.",
@@ -45,3 +45,26 @@ class OrdemServicoViewSet(viewsets.ModelViewSet):
             "mensagem": "Ordem de Serviço aberta com sucesso!", 
             "dados": serializer.data
         }, status=status.HTTP_201_CREATED)
+    
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        
+        try:
+            instance = self.get_object()
+        except Http404 as e:
+            return Response({"erro": str(e)}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        
+        if not serializer.is_valid():
+            return Response({
+                "erro": "Erro: Informações inválidas detectadas. Por favor, corrija os campos destacados e tente novamente.",
+                "detalhes": serializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        self.perform_update(serializer)
+        
+        return Response({
+            "mensagem": "Dados da Ordem de Serviço atualizados com sucesso!", 
+            "dados": serializer.data
+        }, status=status.HTTP_200_OK)
